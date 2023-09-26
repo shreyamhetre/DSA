@@ -1,0 +1,59 @@
+#include <bits/stdc++.h> 
+
+vector<string> printPattern(int n)
+
+{
+
+    vector<string> ans(n,"");
+
+    
+
+    int val=1;
+
+    int i=0;
+
+    int start=0;
+
+    int end=n-1;
+
+    while(start<=end){
+
+        int j=0;
+
+        string res="";
+
+        while(j<n){
+
+            res+=(to_string(val));
+
+            res+=' ';
+
+            val++;
+
+            j++;
+
+        }
+
+        if(i%2==0){
+
+            ans[start]=res;
+
+            start++;
+
+        }
+
+        else{
+
+            ans[end]=res;
+
+            end--;
+
+        }
+
+        i++;
+
+    }
+
+    return ans;
+
+}
