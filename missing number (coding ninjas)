@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to convert a binary string to an integer
+int convertToInt(string binStr) {
+    int num = 0;
+    int len = binStr.length();
+
+    for (int i = len - 1; i >= 0; i--) {
+        if (binStr[i] == '1') {
+            num += pow(2, len - i - 1);
+        }
+    }
+
+    return num;
+}
+
+// Function to convert an integer to a binary string
+string convertToBin(int num) {
+    if (num == 0) {
+        return "0";
+    }
+
+    string binStr = "";
+    while (num > 0) {
+        if (num % 2 == 1) {
+            binStr += '1';
+        } else {
+            binStr += '0';
+        }
+        num /= 2;
+    }
+
+    reverse(binStr.begin(), binStr.end());
+    return binStr;
+}
+
+string findMissingNumber(vector<string> &binaryNums, int n) {
+    vector<int> nums;
+
+    // Convert binary strings to integers and store them in nums
+    for (int i = 0; i < n; i++) {
+        int num = convertToInt(binaryNums[i]);
+        nums.push_back(num);
+    }
+
+    // Sort nums in ascending order
+    sort(nums.begin(), nums.end());
+
+    int missingNum = n;
+
+    // Find the missing number
+    for (int i = 0; i < n; i++) {
+        if (nums[i] != i) {
+            missingNum = i;
+            break;
+        }
+    }
+
+    // Convert missingNum to binary string
+    return convertToBin(missingNum);
+}
+
+
+
