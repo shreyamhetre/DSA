@@ -1,0 +1,35 @@
+class Solution{
+public:
+	vector<int> findSubarray(int a[], int n) {
+	     int start = 0, end = 0;
+        int current_sum = 0, max_sum = 0;
+        int current_len = 0, max_len = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (a[i] >= 0) {
+                current_sum += a[i];
+                current_len++;
+                if (current_sum > max_sum || (current_sum == max_sum && current_len > max_len) || (current_sum == max_sum && current_len == max_len && i - current_len + 1 < start)) {
+                    max_sum = current_sum;
+                    max_len = current_len;
+                    start = i - current_len + 1;
+                    end = i;
+                }
+            } else {
+                current_sum = 0;
+                current_len = 0;
+            }
+        }
+
+        if (max_sum == 0) {
+            return {-1};
+        }
+
+        vector<int> result;
+        for (int i = start; i <= end; i++) {
+            result.push_back(a[i]);
+        }
+
+        return result;
+	}
+};
