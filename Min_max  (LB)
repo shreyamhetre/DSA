@@ -1,45 +1,13 @@
-/*
-problem: Find Min Max element in an array
-Beginner's GFG sheet
-*/
 
-//{ Driver Code Starts
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
-
-pair<long long, long long> getMinMax(long long a[], int n) ;
-
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int n;
-        cin >> n;
-        ll a[n];
-        for (int i = 0; i < n; i++) cin >> a[i];
-
-        pair<ll, ll> pp = getMinMax(a, n);
-
-        cout << pp.first << " " << pp.second << endl;
-    }
-    return 0;
-}
-// } Driver Code Ends
-
-
-std:: pair<long long, long long> getMinMax(long long a[], int n) {
-    int minVal = a[0];
-    int maxVal = a[0];
-    
-    for(int i=0; i<n ; i++){
-        if(a[i] < minVal){
-            minVal = a[i];   
-        }
-        
-         if(a[i] > maxVal){
-            maxVal = a[i];   
-        }
-    }
-    return std::make_pair(minVal, maxVal);
+pair<long long, long long> getMinMax(long long a[], int n) {
+  long long int mi = INT_MAX , ma = INT_MIN;
+  for(int i =0; i<n ; i++){
+      mi = min(mi , a[i]);
+      ma = max(ma , a[i]);
+  }
+  pair <long long , long long> ans;
+  ans.first = mi;
+  ans.second = ma;
+  
+  return ans;
 }
